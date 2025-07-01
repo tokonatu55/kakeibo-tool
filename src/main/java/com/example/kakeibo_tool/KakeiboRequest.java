@@ -1,6 +1,7 @@
 package com.example.kakeibo_tool;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class KakeiboRequest {
     private Integer kakeibo_id;
     private String title;
-    private String price;
-    private LocalDate target_date;
+    private Integer price;
+    private Date target_date;
     private String note;
 }

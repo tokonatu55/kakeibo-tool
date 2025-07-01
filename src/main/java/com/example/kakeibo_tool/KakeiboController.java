@@ -46,6 +46,5 @@ public class KakeiboController {
     public KakeiboResponse fetchKakeibo(@PathVariable("kakeibo_id") Integer kakeibo_id) {
         KakeiboResponse kakeibo = kakeiboService.fetchKakeibo(kakeibo_id);
         return kakeibo;
-}
-    
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.kakeibo_tool;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "家計簿情報テーブル")
+@Table(name = "kakeibo")
 public class Kakeibo {
 
     @Id
@@ -25,10 +26,10 @@ public class Kakeibo {
     private String title;
 
     @Column(nullable = true)
-    private String price;
+    private Integer price;
 
     @Column(nullable = true)
-    private LocalDate target_date;
+    private Date target_date;
 
     @Column(nullable = true)
     private String note;

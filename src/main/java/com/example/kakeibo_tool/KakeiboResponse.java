@@ -1,6 +1,5 @@
 package com.example.kakeibo_tool;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KakeiboResponse {
-    private Integer kakeibo_id;
+    private Long kakeibo_id;
     private String title;
     private Integer price;
     private Date target_date;

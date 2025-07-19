@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KakeiboResponse {
-    private Long kakeibo_id;
+    private Long kakeiboId;
     private String title;
     private Integer price;
-    private Date target_date;
+    private Date targetDate;
     private String note;
 
 }

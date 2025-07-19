@@ -26,7 +26,7 @@ public class KakeiboService {
         Kakeibo kakeibo = new Kakeibo();
         kakeibo.setTitle(kakeiboRequest.getTitle());
         kakeibo.setPrice(kakeiboRequest.getPrice());
-        kakeibo.setTargetDate(kakeiboRequest.getTarget_date());
+        kakeibo.setTargetDate(kakeiboRequest.getTargetDate());
         kakeibo.setNote(kakeiboRequest.getNote());
         kakeiboRepository.save(kakeibo);
     }
@@ -38,15 +38,15 @@ public class KakeiboService {
         Kakeibo kakeibo = new Kakeibo();
         kakeibo.setTitle(kakeiboRequest.getTitle());
         kakeibo.setPrice(kakeiboRequest.getPrice());
-        kakeibo.setTargetDate(kakeiboRequest.getTarget_date());
+        kakeibo.setTargetDate(kakeiboRequest.getTargetDate());
         kakeibo.setNote(kakeiboRequest.getNote());
         kakeiboRepository.save(kakeibo);
     }
 
     //削除
     @Transactional
-    public void deleteKakeibo(Long kakeibo_id) {
-        kakeiboRepository.deleteById(kakeibo_id);
+    public void deleteKakeibo(Long kakeiboId) {
+        kakeiboRepository.deleteById(kakeiboId);
         return;
     }
 
@@ -89,8 +89,8 @@ public class KakeiboService {
 
 
     //指定情報取得処理
-    public KakeiboResponse fetchKakeibo(Long kakeibo_id) {
-        Optional<Kakeibo> record = kakeiboRepository.findById(kakeibo_id);
+    public KakeiboResponse fetchKakeibo(Long kakeiboId) {
+        Optional<Kakeibo> record = kakeiboRepository.findById(kakeiboId);
         if (record.isEmpty()) {
             throw new NoSuchElementException("指定したレコードがありません。");
         }

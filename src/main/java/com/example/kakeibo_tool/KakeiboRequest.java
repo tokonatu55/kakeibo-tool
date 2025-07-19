@@ -13,6 +13,6 @@ public class KakeiboRequest {
     //private Long kakeibo_id;
     private String title;
     private Integer price;
-    private Date target_date;
+    private Date targetDate;
     private String note;
 }

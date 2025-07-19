@@ -44,8 +44,8 @@ public class KakeiboController {
 
     //削除処理
     @DeleteMapping("/api/v1/kakeibo/{kakeibo_id}")
-    public ProcessResultResponse deleteKakeibo(@PathVariable("kakeibo_id") Long kakeibo_id) {
-        kakeiboService.deleteKakeibo(kakeibo_id);
+    public ProcessResultResponse deleteKakeibo(@PathVariable("kakeibo_id") Long kakeiboId) {
+        kakeiboService.deleteKakeibo(kakeiboId);
         return new ProcessResultResponse(true, "削除しました。");
     }
 
@@ -60,8 +60,8 @@ public class KakeiboController {
 
     //指定情報取得処理
     @GetMapping("/api/v1/kakeibo/{kakeibo_id}")
-    public KakeiboResponse fetchKakeibo(@PathVariable("kakeibo_id") Long kakeibo_id) {
-        KakeiboResponse kakeibo = kakeiboService.fetchKakeibo(kakeibo_id);
+    public KakeiboResponse fetchKakeibo(@PathVariable("kakeibo_id") Long kakeiboId) {
+        KakeiboResponse kakeibo = kakeiboService.fetchKakeibo(kakeiboId);
         return kakeibo;
     }
 }

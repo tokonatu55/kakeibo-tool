@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KakeiboRequest {
-    //private Long kakeibo_id;
+    private Long kakeiboId;
     private String title;
     private Integer price;
     private Date targetDate;

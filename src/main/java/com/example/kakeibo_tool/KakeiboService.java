@@ -34,12 +34,18 @@ public class KakeiboService {
     //更新
     @Transactional
     public void updateKakeibo(KakeiboRequest kakeiboRequest) {
+        Optional<Kakeibo> optionalKakeibo = kakeiboRepository.findById(kakeiboRequest.getKakeiboId());
         //Kakeibo kakeibo = new Kakeibo(kakeiboRequest.getKakeibo_id(), kakeiboRequest.getTitle(), kakeiboRequest.getPrice(), kakeiboRequest.getTarget_date(), kakeiboRequest.getNote());
-        Kakeibo kakeibo = new Kakeibo();
+        Kakeibo kakeibo = optionalKakeibo.get();
+        if (kakeiboRequest.getTitle() != null) {
         kakeibo.setTitle(kakeiboRequest.getTitle());
+        }
+        if (kakeiboRequest.getPrice() != null) {
         kakeibo.setPrice(kakeiboRequest.getPrice());
-        kakeibo.setTargetDate(kakeiboRequest.getTargetDate());
+        }
+        if (kakeiboRequest.getNote() != null) {
         kakeibo.setNote(kakeiboRequest.getNote());
+        }
         kakeiboRepository.save(kakeibo);
     }
 

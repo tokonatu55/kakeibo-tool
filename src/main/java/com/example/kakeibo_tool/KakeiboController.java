@@ -3,10 +3,6 @@ package com.example.kakeibo_tool;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
-
-import org.apache.catalina.connector.Request;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin
 @RestController
@@ -54,6 +48,7 @@ public class KakeiboController {
     public KakeiboResponseList fetchKakeibo(@PathVariable("targetmonth") String targetMonth) throws ParseException {
         SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMM");
         Date targetDate = sdFormat.parse(targetMonth);
+        System.out.println(targetDate);
         KakeiboResponseList list = kakeiboService.fetchKakeibo(targetDate);
         return list;
     }

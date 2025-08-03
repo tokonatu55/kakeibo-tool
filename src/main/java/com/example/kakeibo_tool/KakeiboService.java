@@ -82,7 +82,9 @@ public class KakeiboService {
 
         // 翌月初（例: 2025-08-01 00:00:00）→ 「未満」で月末までカバー
         cal.add(Calendar.MONTH, 1);
+        cal.add(Calendar.MILLISECOND, -1);
         Date endDate = cal.getTime();
+        //System.out.println(endDate);
 
         //List<Kakeibo> records = kakeiboRepository.findAllByTargetDate(targetDate);
         List<Kakeibo> records = kakeiboRepository.findAllByTargetDateBetween(startDate, endDate);

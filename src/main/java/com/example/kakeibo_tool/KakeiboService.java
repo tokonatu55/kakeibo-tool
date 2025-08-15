@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.apache.juli.logging.Log;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class KakeiboService {
 
@@ -57,34 +60,10 @@ public class KakeiboService {
     }
 
     //情報一覧取得処理
-    /*public KakeiboResponseList fetchAllKakeibo() {
-        List<Kakeibo> records = kakeiboRepository.findAll();
-
-        List<KakeiboResponse> kakeiboResponses = records.stream()
-            .map(kakeibo -> new KakeiboResponse(kakeibo.getKakeiboId(), kakeibo.getTitle(), kakeibo.getPrice(), kakeibo.getTargetDate(), kakeibo.getNote()))
-            .toList();
-        KakeiboResponseList kakeiboResponseList = new KakeiboResponseList(kakeiboResponses);
-        return kakeiboResponseList;
-    }*/
-
     public KakeiboResponseList fetchKakeibo(Date targetDate) {
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(targetDate);
-
-        // 月初（例: 2025-07-01 00:00:00）
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        Date startDate = cal.getTime();
-
-        // 翌月初（例: 2025-08-01 00:00:00）→ 「未満」で月末までカバー
-        cal.add(Calendar.MONTH, 1);
-        cal.add(Calendar.MILLISECOND, -1);
-        Date endDate = cal.getTime();
-        //System.out.println(endDate);
+        Date startDate = DateUtility.createStartDate(targetDate);
+        Date endDate = DateUtility.createEndDate(targetDate);
 
         //List<Kakeibo> records = kakeiboRepository.findAllByTargetDate(targetDate);
         List<Kakeibo> records = kakeiboRepository.findAllByTargetDateBetween(startDate, endDate);
@@ -100,6 +79,7 @@ public class KakeiboService {
     public KakeiboResponse fetchKakeibo(Long kakeiboId) {
         Optional<Kakeibo> record = kakeiboRepository.findById(kakeiboId);
         if (record.isEmpty()) {
+            log.error("指定したレコードがありません。");
             throw new NoSuchElementException("指定したレコードがありません。");
         }
         Kakeibo kakeibo = record.get();

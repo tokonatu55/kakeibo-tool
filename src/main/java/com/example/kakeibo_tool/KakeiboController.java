@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
+@Slf4j
 @CrossOrigin
 @RestController
 public class KakeiboController {
@@ -48,8 +52,9 @@ public class KakeiboController {
     public KakeiboResponseList fetchKakeibo(@PathVariable("targetmonth") String targetMonth) throws ParseException {
         SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMM");
         Date targetDate = sdFormat.parse(targetMonth);
-        System.out.println(targetDate);
         KakeiboResponseList list = kakeiboService.fetchKakeibo(targetDate);
+        System.out.println("一覧取得が実行されました。対象月：" + targetMonth);
+        log.info("一覧取得が実行されました。対象月：{}", targetMonth);
         return list;
     }
 

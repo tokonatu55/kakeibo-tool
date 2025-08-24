@@ -62,8 +62,8 @@ public class KakeiboService {
     //情報一覧取得処理
     public KakeiboResponseList fetchKakeibo(Date targetDate) {
 
-        Date startDate = DateUtility.createStartDate(targetDate);
-        Date endDate = DateUtility.createEndDate(targetDate);
+        Date startDate = DateUtility.createStartDateOfMonth(targetDate);
+        Date endDate = DateUtility.createEndDateOfMonth(targetDate);
 
         //List<Kakeibo> records = kakeiboRepository.findAllByTargetDate(targetDate);
         List<Kakeibo> records = kakeiboRepository.findAllByTargetDateBetween(startDate, endDate);

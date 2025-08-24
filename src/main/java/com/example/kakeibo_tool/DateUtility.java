@@ -3,9 +3,17 @@ package com.example.kakeibo_tool;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 日付ユーティリティ
+ * @author TORI
+ */
 public class DateUtility {
-
-    public  static Date createStartDate(Date targetDate){
+    /**
+     * その月の最初の日を返す
+     * @param targetDate 対象の日付
+     * @return 月の最初の日
+     */
+    public static Date createStartDateOfMonth(Date targetDate){
         Calendar cal = Calendar.getInstance();
         cal.setTime(targetDate);
 
@@ -18,7 +26,12 @@ public class DateUtility {
         return cal.getTime();
     }
 
-    public static Date createEndDate(Date targetDate){
+    /**
+     * その月の最後の日を返す
+     * @param targetDate 対象の日付
+     * @return 月の最後の日
+     */
+    public static Date createEndDateOfMonth(Date targetDate){
         Calendar cal = Calendar.getInstance();
         cal.setTime(targetDate);
 

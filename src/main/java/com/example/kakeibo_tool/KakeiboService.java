@@ -38,7 +38,6 @@ public class KakeiboService {
     @Transactional
     public void updateKakeibo(KakeiboRequest kakeiboRequest) {
         Optional<Kakeibo> optionalKakeibo = kakeiboRepository.findById(kakeiboRequest.getKakeiboId());
-        //Kakeibo kakeibo = new Kakeibo(kakeiboRequest.getKakeibo_id(), kakeiboRequest.getTitle(), kakeiboRequest.getPrice(), kakeiboRequest.getTarget_date(), kakeiboRequest.getNote());
         Kakeibo kakeibo = optionalKakeibo.get();
         if (kakeiboRequest.getTitle() != null) {
         kakeibo.setTitle(kakeiboRequest.getTitle());
@@ -65,8 +64,8 @@ public class KakeiboService {
         Date startDate = DateUtility.createStartDateOfMonth(targetDate);
         Date endDate = DateUtility.createEndDateOfMonth(targetDate);
 
-        //List<Kakeibo> records = kakeiboRepository.findAllByTargetDate(targetDate);
         List<Kakeibo> records = kakeiboRepository.findAllByTargetDateBetween(startDate, endDate);
+
         List<KakeiboResponse> kakeiboResponses = records.stream()
             .map(kakeibo -> new KakeiboResponse(kakeibo.getKakeiboId(), kakeibo.getTitle(), kakeibo.getPrice(), kakeibo.getTargetDate(), kakeibo.getNote()))
             .toList();

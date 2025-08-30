@@ -51,10 +51,10 @@ public class KakeiboController {
     @GetMapping("/api/v1/kakeiboes/{targetmonth}")
     public KakeiboResponseList fetchKakeibo(@PathVariable("targetmonth") String targetMonth) throws ParseException {
         SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMM");
-        Date targetDate = sdFormat.parse(targetMonth);
+        Date targetDate = sdFormat.parse(targetMonth); //例：2025-08-01 00:00:00
         KakeiboResponseList list = kakeiboService.fetchKakeibo(targetDate);
-        System.out.println("一覧取得が実行されました。対象月：" + targetMonth);
-        log.info("一覧取得が実行されました。対象月：{}", targetMonth);
+        //System.out.println("一覧取得が実行されました。対象月：" + targetMonth);
+        //log.info("一覧取得が実行されました。対象月：{}", targetMonth);
         return list;
     }
 
